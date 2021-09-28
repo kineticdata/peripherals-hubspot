@@ -34,7 +34,7 @@ public class Hubspot_HelperMethodTest {
     public void test_get_parameters() throws BridgeError {
         HubspotAdapter helper = new HubspotAdapter();
         
-        AdapterMapping mapping = helper.getMapping("Contacts");
+        AdapterMapping mapping = helper.getMapping("Companies");
         
         Map<String, String> parameters = 
             helper.getParameters("foo=bar&fizz=buzz", mapping);

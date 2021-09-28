@@ -32,6 +32,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 public class HubspotAdapter implements BridgeAdapter {
     /*----------------------------------------------------------------------------------------------
@@ -69,7 +70,7 @@ public class HubspotAdapter implements BridgeAdapter {
     public static final String NAME = "Hubspot Bridge";
 
     /** Defines the LOGGER */
-    protected static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(HubspotAdapter.class);
+    protected static final Logger LOGGER = LoggerFactory.getLogger(HubspotAdapter.class);
 
     /** Adapter version constant. */
     public static String VERSION;
@@ -192,7 +193,7 @@ public class HubspotAdapter implements BridgeAdapter {
     @Override
     public Record retrieve(BridgeRequest request) throws BridgeError {
         // Log the access
-        LOGGER.trace("Retrieving Kinetic Request CE Record");
+        LOGGER.trace("Retrieving Record");
         LOGGER.trace("  Structure: " + request.getStructure());
         if (request.getQuery() != null) {
             LOGGER.trace("  Query: " + request.getQuery());

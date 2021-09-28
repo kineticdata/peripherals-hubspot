@@ -96,7 +96,7 @@ public class HubspotApiHelper {
         }
         catch (IOException e) {
             throw new BridgeError(
-                "Unable to make a connection to the Harvest service server.", e);
+                "Unable to make a connection to the Hubspot service server.", e);
         }
         
         return output;
