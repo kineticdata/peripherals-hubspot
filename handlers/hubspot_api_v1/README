@@ -1,0 +1,43 @@
+== Hupspot API V1
+Hubspot REST API V1 Client
+
+=== Parameters
+[Error Handling]
+Select between returning an error message, or raising an exception.
+[Method]
+HTTP Method to use for the Hubspot API call being made.
+Options are: - GET - POST - PUT - PATCH - DELETE
+[Path]
+The relative API path (to the `api_location` info value) that will be called.
+This value should begin with a forward slash `/`.
+[Body]
+The body content (JSON) that will be sent for POST, PUT, and PATCH requests.
+
+=== Examples
+
+### Create a Ticket
+
+Below is the example configuration for creating a Ticket in Hubspot
+Method: `POST`
+Path: `/crm/v3/objects/tickets`
+Body:
+
+```json
+{
+  "properties": {
+    "hs_pipeline": 0,
+    "hs_ticket_category": "RFE",
+    "hs_pipeline_stage": 1,
+    "hs_ticket_priority": "HIGH",
+    "subject": "test ticket from api"
+  }
+}
+```
+
+=== Results
+[Response Body]
+The returned value from the Rest Call (JSON format)
+
+```
+
+```
