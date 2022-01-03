@@ -77,7 +77,7 @@ public class HubspotApiHelper {
             HttpResponse response;
             
             response = client.execute(http);
-            LOGGER.debug("Recieved response from \"{}\" in {}ms.",
+            LOGGER.debug("Received response from \"{}\" in {}ms.",
                 http.getURI(),
                 System.currentTimeMillis()-start);
 
@@ -91,7 +91,7 @@ public class HubspotApiHelper {
             
             // Handle all other failed repsonses
             if (responseCode >= 400) {
-                handleFailedReqeust(responseCode);
+                handleFailedRequest(responseCode);
             }
         }
         catch (IOException e) {
@@ -102,12 +102,14 @@ public class HubspotApiHelper {
         return output;
     }
     
-    private void handleFailedReqeust (int responseCode) throws BridgeError {
+    private void handleFailedRequest (int responseCode) throws BridgeError {
         switch (responseCode) {
             case 400:
                 throw new BridgeError("400: Bad Reqeust");
             case 401:
                 throw new BridgeError("401: Unauthorized");
+            case 403:
+                throw new BridgeError("403: Forbidden");
             case 404:
                 throw new BridgeError("404: Page not found");
             case 405:
