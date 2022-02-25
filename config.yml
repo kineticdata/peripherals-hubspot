@@ -1,8 +1,8 @@
 ---
-repo-name: peripherals-
+repo-name: peripherals-hubspot
 categories:
-- Temp
-display-name: Temp
-manufacturer: 
-product:
-description: Temp.
+- CRM
+display-name: Hubspot
+manufacturer: Hubspot
+product: Hubspot
+description:  HubSpot is an inbound marketing and sales platform that helps companies to attract visitors, convert leads and close customers. This includes content creation, social media sharing, workflow automation, lead capture, customer relationship management, sales pipeline mapping and performance tracking.
