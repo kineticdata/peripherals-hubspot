@@ -34,7 +34,7 @@ public class HubspotApiHelper {
     }
     
     public JSONObject executeRequest (String path, JSONObject body) throws BridgeError{
-        String url = baseUrl + path + "?hapikey=" + apiKey;
+        String url = baseUrl + path;
         
         HttpPost post = new HttpPost(url);
         StringEntity requestEntity = null;
@@ -45,6 +45,7 @@ public class HubspotApiHelper {
             throw new BridgeError("An exception occured during encoding json string", e);
         }
         post.setEntity(requestEntity);
+        post.setHeader("Authorization", "Bearer " + apiKey);
         post.setHeader("Content-Type", "application/json");
             
         return executeRequest(post);
@@ -53,13 +54,9 @@ public class HubspotApiHelper {
     public JSONObject executeRequest (String path) throws BridgeError {
         String url = baseUrl + path;
         
-        // Append the api key to the end of the url for authntication
-        url = url.contains("?") 
-            ? url + "&hapikey=" + apiKey
-            : url + "?hapikey=" + apiKey;
-        
         HttpGet get = new HttpGet(url);
 
+        get.setHeader("Authorization", "Bearer " + apiKey);
         get.setHeader("Content-Type", "application/json");
         get.setHeader("Accept", "application/json");
 

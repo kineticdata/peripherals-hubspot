@@ -16,3 +16,4 @@
 **/.sync.csv
 **/.DS_Store
 /bridge-adapters/**/nbproject/
+**/.idea

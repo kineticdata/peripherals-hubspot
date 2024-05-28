@@ -2,14 +2,14 @@
 An adapter for interacting with the HubSpot api
 
 ## Configuration Values
-| Name                    | Description |
-| :---------------------- | :------------------------- |
-| API Key                 | A key provided by [HubSpot](https://knowledge.hubspot.com/integrations/how-do-i-get-my-hubspot-api-key) for use by developers to integrate with their API. |
+| Name         | Description                                                                                                                          |
+|:-------------|:-------------------------------------------------------------------------------------------------------------------------------------|
+| Access Token | A token created by [HubSpot private app](https://developers.hubspot.com/docs/api/private-apps) for integrating with the Hubspot API. |
 
 ## Example Configuration
-| Name | Value |
-| :---- | :--- |
-| API Key | 36....4-...d-...f-..0d-c64feerf8... |
+| Name         | Value |
+|:-------------| :--- |
+| Access Token | 36....4-...d-...f-..0d-c64feerf8... |
 
 ## Supported Structures
 | Name                    | Description |
@@ -33,9 +33,9 @@ An adapter for interacting with the HubSpot api
 ## Notes
 * [JsonPath](https://github.com/json-path/JsonPath#path-examples) can be used to access nested values. The root of the path is the accessor for the Structure.
 * This adapter has been tested with the 1.1.0 bridgehub adapter.
-* The adapter only supports API key authentication at this time.  
+* The adapter only supports Access Token authentication at this time.  
     - To access the API key you must have Super Admin [permission](https://knowledge.hubspot.com/settings/hubspot-user-permissions-guide?__hstc=45788219.78c31a6a1ef939bde78914f7fa0fd849.1624607212906.1624607212906.1624607212906.1&__hssc=45788219.1.1624607212907&__hsfp=1000307879&_ga=2.230712409.756209440.1624607210-1620574245.1624607210#super-admin).
-    - Visit [HubSpot](https://knowledge.hubspot.com/integrations/how-do-i-get-my-hubspot-api-key) for instructions on getting your API key.
+    - Visit [HubSpot](https://developers.hubspot.com/docs/api/private-apps) for instructions for creating a private app and getting an access token.
 * Pagination and sort order are not supported by the adapter, but Harvest source api behavior is supported.  
 * From more information about HubSpot api visit [HubSpot Developer Docs](https://developers.hubspot.com/docs/api/overview)
 * This adapter requires an id parameter to be passed to retrieve an element.

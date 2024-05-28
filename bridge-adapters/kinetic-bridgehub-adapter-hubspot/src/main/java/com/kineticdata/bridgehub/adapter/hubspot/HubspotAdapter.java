@@ -89,7 +89,8 @@ public class HubspotAdapter implements BridgeAdapter {
 
     /** Defines the collection of property names for the adapter */
     public static class Properties {
-        public static final String PROPERTY_API_KEY = "API Key";
+        // Renamed API key to Access Token due to a change in the Hubspot API.  Keeping the name the same in the code.
+        public static final String PROPERTY_API_KEY = "Access Token";
     }
     private final ConfigurablePropertyMap properties = new ConfigurablePropertyMap(
         new ConfigurableProperty(Properties.PROPERTY_API_KEY).setIsRequired(true));
