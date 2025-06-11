@@ -1,0 +1,1109 @@
+{
+  "id": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+  "name": "Hubspot",
+  "status": {
+    "events": [
+      [
+        "Started",
+        "2025-05-15T14:42:48.666Z"
+      ]
+    ],
+    "healthy": true
+  },
+  "type": "http",
+  "config": {
+    "auth": {
+      "header": "Authorization",
+      "prefix": "Bearer",
+      "token": null,
+      "authType": "raw_bearer_token"
+    },
+    "configType": "http",
+    "caCert": null,
+    "baseUrl": "https://api.hubapi.com/",
+    "testPath": ""
+  },
+  "description": "Hubspot",
+  "secrets": {},
+  "insertedAt": "2025-03-04T17:14:45.892455Z",
+  "lockVersion": 3,
+  "documentationLink": "https://developers.hubspot.com/docs/reference/api/overview",
+  "updatedAt": "2025-04-01T15:34:20.526857Z",
+  "operations": 
+	[
+	  {
+		"id": "e9ef1ae4-78e5-4d21-9ab0-e6692bf35e64",
+		"name": "PATCH Update Columns for HubDB table",
+		"config": {
+		  "path": "cms/v3/hubdb/tables/{{tableName}}/draft",
+		  "params": {},
+		  "body": {
+			"raw": "{\n  \"columns\": {{{col}}}\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"Content-Type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "PATCH",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-05-13T13:48:00.703025Z",
+		"lockVersion": 6,
+		"documentationLink": "",
+		"updatedAt": "2025-05-13T14:31:27.474512Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "a89b5668-58b9-4cec-b0e3-12aafd096290",
+		"name": "GET ticket by ID",
+		"config": {
+		  "path": "crm/v3/objects/tickets/{{ticketId}}",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-03-04T17:16:14.259253Z",
+		"lockVersion": 4,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:04:27.193418Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": "Get ticket"
+	  },
+	  {
+		"id": "10c93647-806b-46f3-97e6-c63b8d336c86",
+		"name": "POST Create Company",
+		"config": {
+		  "path": "crm/v3/objects/companies",
+		  "params": {},
+		  "body": {
+			"raw": "{\n  \"properties\": {\n    \"name\": \"{{CompanyName}}\",\n    \"domain\": \"{{CompanyDomain}}\",\n    \"industry\": \"{{industry}}\"\n  }\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "companyID": {
+			"value": "body.properties.hs_object_id"
+		  }
+		},
+		"insertedAt": "2025-03-31T13:11:56.219062Z",
+		"lockVersion": 9,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:06:34.748028Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "2f671533-3797-437d-b3dd-22ca7f08b267",
+		"name": "GET Company by ID",
+		"config": {
+		  "path": "crm/v3/objects/companies/{{id}}",
+		  "params": {
+			"includePropertyVersions": "true",
+			"properties": "website, name"
+		  },
+		  "body": {
+			"raw": "",
+			"bodyType": "raw"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "HSCompanyID": {
+			"value": "body.properties['hs_object_id']"
+		  },
+		  "HSCompanyName": {
+			"value": "body.properties['name']"
+		  },
+		  "HSCompanyURL": {
+			"value": "body.properties['website']"
+		  }
+		},
+		"insertedAt": "2025-03-04T17:23:10.207027Z",
+		"lockVersion": 11,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:05:35.947763Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "0e26cb3b-85de-4838-9c35-c98f44c251ab",
+		"name": "GET Ticket with Associations",
+		"config": {
+		  "path": "crm/v3/objects/tickets/{{ticketId}}",
+		  "params": {
+			"associations": "contacts,company"
+		  },
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "associations": {
+			"value": "body.associations"
+		  },
+		  "subject": {
+			"value": "body.properties.subject"
+		  }
+		},
+		"insertedAt": "2025-03-24T14:50:38.190278Z",
+		"lockVersion": 7,
+		"documentationLink": "",
+		"updatedAt": "2025-05-15T18:11:00.862917Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "839a3721-113d-406b-aa44-cfdecf1935f9",
+		"name": "GET FileFolder",
+		"config": {
+		  "path": "files/v3/folders/{{folderId}}",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-04-01T15:36:33.955982Z",
+		"lockVersion": 7,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:05:49.979150Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "104351b9-1536-4bef-8d12-b20d18d38f52",
+		"name": "GET Contact by ID",
+		"config": {
+		  "path": "crm/v3/objects/contacts/{{id}}",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "properties": {
+			"value": "body.properties"
+		  }
+		},
+		"insertedAt": "2025-03-25T16:25:31.601488Z",
+		"lockVersion": 7,
+		"documentationLink": "",
+		"updatedAt": "2025-04-22T19:03:15.667721Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "79c37586-8327-4941-8651-dcbbe04cb9c4",
+		"name": "POST Get tickets last 10 minutes",
+		"config": {
+		  "path": "crm/v3/objects/tickets/search",
+		  "params": {},
+		  "body": {
+			"raw": "{\n    \"filterGroups\": [\n      {\n        \"filters\": [\n          {\n            \"propertyName\": \"createdate\",\n            \"operator\": \"GT\",\n            \"value\": \"{{search}}\"\n          }\n        ]\n      }\n    ]\n  }",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "results": {
+			"value": "body.results"
+		  }
+		},
+		"insertedAt": "2025-03-05T21:25:47.166413Z",
+		"lockVersion": 17,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:04:15.125520Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "011734b4-ea38-4db8-8d3d-c6e904509d10",
+		"name": "POST Get Partners",
+		"config": {
+		  "path": "crm/v3/objects/companies/search",
+		  "params": {},
+		  "body": {
+			"raw": "{\n    \"filterGroups\": [\n      {\n        \"filters\": [\n          {\n            \"propertyName\": \"company_type\",\n            \"operator\": \"CONTAINS_TOKEN\",\n            \"value\": \"Implementation Partner\"\n          }\n        ]\n      }\n    ]\n  }",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "Partner": {
+			"children": {
+			  "name": "current.properties.name"
+			},
+			"value": "body.results"
+		  }
+		},
+		"insertedAt": "2025-03-25T16:19:58.296192Z",
+		"lockVersion": 8,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:04:59.039812Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "e185023c-082d-4c8a-a76d-845d899a0ff5",
+		"name": "GET Lead by ID",
+		"config": {
+		  "path": "crm/v3/objects/leads/{{leadID}}",
+		  "params": {
+			"properties": "hs_lead_label, hs_lead_type, hs_pipeline_stage, hs_lead_name"
+		  },
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "properties": {
+			"value": "body.properties"
+		  }
+		},
+		"insertedAt": "2025-04-16T17:40:35.520964Z",
+		"lockVersion": 8,
+		"documentationLink": "",
+		"updatedAt": "2025-04-28T19:40:58.964575Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "f29fd98e-a276-4607-8c62-868a4101d444",
+		"name": "Search companies",
+		"config": {
+		  "path": "crm/v3/objects/companies/search",
+		  "params": {},
+		  "body": {
+			"raw": "{\n    \"filterGroups\": [\n      {\n        \"filters\": [\n          {\n            \"propertyName\": \"name\",\n            \"operator\": \"CONTAINS_TOKEN\",\n            \"value\": \"{{search}}\"\n          }\n        ]\n      }\n    ]\n  }",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "Companies": {
+			"children": {
+			  "id": "current.id",
+			  "name": "current.properties.name"
+			},
+			"value": "body.results"
+		  }
+		},
+		"insertedAt": "2025-03-04T17:18:11.220320Z",
+		"lockVersion": 6,
+		"documentationLink": "",
+		"updatedAt": "2025-04-01T15:34:13.461569Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "26be2bb5-da81-4baf-b28d-35bb71c63618",
+		"name": "GET association between two objects",
+		"config": {
+		  "path": "/crm/v4/objects/{{fromObjectType}}/{{objectId}}/associations/{{toObjectType}}",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-04-03T18:30:10.107483Z",
+		"lockVersion": 3,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:04:39.059710Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "a9e601be-0d41-475e-b80c-71c3e73a4fd1",
+		"name": "GET File by ID",
+		"config": {
+		  "path": "files/v3/files/{{fileID}}",
+		  "params": {},
+		  "body": {
+			"raw": "",
+			"bodyType": "raw"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "body": {
+			"value": "body"
+		  }
+		},
+		"insertedAt": "2025-04-01T16:15:16.601162Z",
+		"lockVersion": 6,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:05:45.656481Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "86d30ce8-5b7a-49e2-81ed-2d605ca3add1",
+		"name": "DELETE Lead by ID",
+		"config": {
+		  "path": "crm/v3/objects/leads/{{leadId}}",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "DELETE",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-05-15T18:41:17.140157Z",
+		"lockVersion": 3,
+		"documentationLink": "",
+		"updatedAt": "2025-05-15T18:41:54.298843Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "19de0553-03e0-4b0d-9e26-8f5f338cd204",
+		"name": "POST Create Lead with association to primary contact",
+		"config": {
+		  "path": "crm/v3/objects/leads",
+		  "params": {},
+		  "body": {
+			"raw": "{\n  \"associations\": [\n    {\n      \"types\": [\n        {\n          \"associationCategory\": \"HUBSPOT_DEFINED\",\n          \"associationTypeId\": 578\n        }\n      ],\n      \"to\": {\n        \"id\": \"{{objectIDtoAssociateTo}}\"\n      }\n    }\n  ],\n  \"properties\": {\n    \"hs_lead_name\": \"{{leadName}}\",\n    \"hs_lead_type\": \"{{leadType}}\",\n    \"hs_lead_label\": \"{{leadLabel}}\",\n    \"submitting_partner\": \"{{submittingPartner}}\",\n    \"hubspot_owner_id\": \"{{LeadOwnerID}}\"\n  }\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "leadID": {
+			"value": "body.id"
+		  }
+		},
+		"insertedAt": "2025-04-07T16:26:56.143637Z",
+		"lockVersion": 8,
+		"documentationLink": "",
+		"updatedAt": "2025-04-29T15:51:32.159759Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "22f2dff1-29fa-4db9-bd75-ffc08226f936",
+		"name": "POST Create Contact with Association",
+		"config": {
+		  "path": "crm/v3/objects/contacts",
+		  "params": {},
+		  "body": {
+			"raw": "{\n  \"properties\": {\n    \"email\": \"{{email}}\",\n    \"firstname\": \"{{firstname}}\",\n    \"lastname\": \"{{lastname}}\",\n    \"company\": \"{{company}}\"\n  },\n  \"associations\": [\n    {\n      \"to\": {\n        \"id\": \"{{companyid}}\"\n      },\n      \"types\": [\n        {\n          \"associationCategory\": \"{{associationcategory}}\",\n          \"associationTypeId\": \"{{associationtypeid}}\"\n        }\n      ]\n    }\n  ]\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "contactID": {
+			"value": "body.id"
+		  },
+		  "properties": {
+			"value": "body.properties"
+		  }
+		},
+		"insertedAt": "2025-03-26T16:17:33.250630Z",
+		"lockVersion": 9,
+		"documentationLink": "",
+		"updatedAt": "2025-05-02T19:55:35.345670Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "68a110a3-4db7-48f5-b4bf-e2f765f93734",
+		"name": "GET Deal by ID",
+		"config": {
+		  "path": "crm/v3/objects/deals/{{dealID}}",
+		  "params": {
+			"properties": "dealstage, dealname, amount, closedate, hs_object_id, companies, hubspot_owner_id"
+		  },
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-05-15T18:18:32.411951Z",
+		"lockVersion": 4,
+		"documentationLink": "",
+		"updatedAt": "2025-05-19T14:31:55.039114Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "84349e6c-0cde-441b-90aa-19262bddf116",
+		"name": "GET Retrieve Label assocations",
+		"config": {
+		  "path": "crm/v4/associations/{{fromObjectType}}/{{toObjectType}}/labels",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-05-15T18:23:14.569938Z",
+		"lockVersion": 2,
+		"documentationLink": "",
+		"updatedAt": "2025-05-15T18:23:14.569938Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "bf962318-89f4-4bd2-a8c0-752e1088ac80",
+		"name": "PUT associate object to another object",
+		"config": {
+		  "path": "crm/v4/objects/{{objectType}}/{{objectId}}/associations/default/{{toObjectType}}/{{toObjectId}}",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "PUT",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-04-04T16:11:46.711625Z",
+		"lockVersion": 4,
+		"documentationLink": "",
+		"updatedAt": "2025-04-04T16:21:42.293330Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "24a8d58a-28ff-49ef-a341-6f71553c5b50",
+		"name": "GET all property options of an object",
+		"config": {
+		  "path": "crm/v3/properties/{{object}}/{{propertyName}}",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "values": {
+			"children": {
+			  "displayOrder": "current.displayOrder",
+			  "name": "current.label",
+			  "value": "current.value"
+			},
+			"value": "body.options"
+		  }
+		},
+		"insertedAt": "2025-04-04T14:26:32.072723Z",
+		"lockVersion": 4,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:04:44.018026Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "e0942254-f19d-4a39-94b5-eaba11e1afd2",
+		"name": "POST Create Folder with path",
+		"config": {
+		  "path": "files/v3/folders",
+		  "params": {},
+		  "body": {
+			"raw": "{ \n  \"parentPath\": \"{{parentPath}}\",\n  \"name\": \"{{folderName}}\"\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-04-03T13:39:21.209472Z",
+		"lockVersion": 5,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:06:15.174122Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "6fc95246-eb45-438d-a019-7d3c2a642a87",
+		"name": "PUT associate object to another with label",
+		"config": {
+		  "path": "crm/v4/objects/{{objectType}}/{{objectId}}/associations/{{toObjectType}}/{{toObjectId}}",
+		  "params": {},
+		  "body": {
+			"raw": "[\n  {\n    \"associationCategory\": \"{{associationCategory}}\",\n    \"associationTypeId\": {{associationTypeId}}\n  }\n]",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"Content-Type": "application/json",
+			"accept": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "PUT",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-05-15T18:22:48.497423Z",
+		"lockVersion": 5,
+		"documentationLink": "",
+		"updatedAt": "2025-05-16T18:37:17.438320Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "c946ac88-2024-46e8-a9ed-f89b4024bd96",
+		"name": "GET Leads",
+		"config": {
+		  "path": "crm/v3/objects/leads",
+		  "params": {
+			"properties": "hs_lead_name,hs_lead_type,hs_lead_label,hs_pipeline_stage, hubspot_owner_id "
+		  },
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "results": {
+			"value": "body.results"
+		  }
+		},
+		"insertedAt": "2025-04-08T14:35:02.744786Z",
+		"lockVersion": 5,
+		"documentationLink": "",
+		"updatedAt": "2025-04-29T15:50:59.830359Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "1960a024-734f-45e6-ba62-4510b4d7e52e",
+		"name": "GET Deals",
+		"config": {
+		  "path": "crm/v3/objects/deals",
+		  "params": {
+			"properties": "dealstage, dealname, amount, closedate, hs_object_id"
+		  },
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "results": {
+			"value": "body.results"
+		  }
+		},
+		"insertedAt": "2025-04-28T19:26:44.404994Z",
+		"lockVersion": 4,
+		"documentationLink": "",
+		"updatedAt": "2025-04-29T15:59:07.801510Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "22600678-d75d-4715-b537-b243ab81cf15",
+		"name": "POST HubDB Table",
+		"config": {
+		  "path": "cms/v3/hubdb/tables/{{tableID}}/draft",
+		  "params": {},
+		  "body": {
+			"raw": "{\n  \"columns\": [\n                 {\n                   \"name\" : \"name\",\n                   \"label\" : \"Name\",\n                   \"type\" : \"TEXT\"\n                 },\n                 {\n                   \"name\" : \"slug\",\n                   \"label\" : \"Slug\",\n                   \"type\" : \"TEXT\"\n                 },\n                 {\n                   \"name\" : \"integration_type\",\n                   \"label\" : \"Integration Type\",\n                   \"type\" : \"TEXT\"\n                 },\n                 {\n                   \"name\" : \"version\",\n                   \"label\" : \"Version\",\n                   \"type\" : \"TEXT\"\n                 },\n                 {\n                   \"name\" : \"description\",\n                   \"label\" : \"Description\",\n                   \"limit\" : 65000,\n                   \"type\" : \"RICHTEXT\"\n                 },\n                 {\n                   \"name\" : \"repository_location\",\n                   \"label\" : \"Repository Location\",\n                   \"type\" : \"TEXT\"\n                 },\n                 {\n                   \"name\" : \"download_location\",\n                   \"label\" : \"Download Location\",\n                   \"type\" : \"TEXT\"\n                 },\n                 {\n                   \"name\" : \"parameters\",\n                   \"label\" : \"Parameters\",\n                   \"type\" : \"TEXT\"\n                 },\n                 {\n                   \"name\" : \"results\",\n                   \"label\" : \"Results\",\n                   \"type\" : \"TEXT\"\n                 },\n                 {\n                  \"name\" : \"configurations\",\n                  \"label\" : \"Configurations\",\n                  \"type\" : \"TEXT\"\n                },\n                 {\n                   \"name\" : \"changelog\",\n                   \"label\" : \"Change Log\",\n                   \"limit\" : 65000,\n                   \"type\" : \"RICHTEXT\"\n                 }\n   ]\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "PATCH",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-04-10T15:14:25.015437Z",
+		"lockVersion": 4,
+		"documentationLink": "",
+		"updatedAt": "2025-04-10T20:18:24.372290Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "b56633e7-1fcb-4178-aecf-0c4adef4f711",
+		"name": "GET HubDB Table",
+		"config": {
+		  "path": "cms/v3/hubdb/tables/{{tableID}}/draft",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-04-10T15:14:38.897638Z",
+		"lockVersion": 4,
+		"documentationLink": "",
+		"updatedAt": "2025-04-10T20:18:38.188082Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "944204be-1ffb-468d-b9bc-03894ef5d8b7",
+		"name": "GET Note by ID",
+		"config": {
+		  "path": "crm/v3/objects/notes/{{noteId}}",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {
+			"archived": "false",
+			"properties": "hubspot_owner_id"
+		  },
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-04-07T18:48:52.104735Z",
+		"lockVersion": 5,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:06:02.077246Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "7ab40755-4dd6-45d0-9bea-8bbed725afe1",
+		"name": "GET Owner by Email",
+		"config": {
+		  "path": "crm/v3/owners/",
+		  "params": {
+			"email": "{{ownerEmail}}"
+		  },
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {
+			"archived": "false",
+			"limit": "100"
+		  },
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-04-07T18:35:31.739725Z",
+		"lockVersion": 6,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:06:05.884619Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "aefacab2-cfb8-4708-95d8-b0d60e06d074",
+		"name": "POST Create note with association to company",
+		"config": {
+		  "path": "crm/v3/objects/notes",
+		  "params": {},
+		  "body": {
+			"raw": "{\n  \"properties\": {\n    \"hs_timestamp\": \"{{timestamp}}\",\n    \"hs_note_body\": \"{{noteBody}}\",\n    \"hubspot_owner_id\": \"{{ownerID}}\",\n    \"hs_attachment_ids\": \"{{attachmentIDs}}\"\n  },\n  \"associations\": [\n    {\n      \"to\": {\n        \"id\": {{companyID}}\n      },\n      \"types\": [\n        {\n          \"associationCategory\": \"HUBSPOT_DEFINED\",\n          \"associationTypeId\": 190\n        }\n      ]\n    }\n  ]\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-04-03T18:43:49.047460Z",
+		"lockVersion": 6,
+		"documentationLink": "",
+		"updatedAt": "2025-04-16T18:06:20.167030Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "859539b0-487c-4564-b38f-bdb449ac7476",
+		"name": "POST Search company by Domain",
+		"config": {
+		  "path": "companies/v2/domains/{{domain}}/companies",
+		  "params": {},
+		  "body": {
+			"raw": "{\n  \"limit\": 1,\n  \"requestOptions\": {\n    \"properties\": [\n      \"domain\",\n      \"createdate\",\n      \"name\",\n      \"hs_lastmodifieddate\"\n    ]\n  },\n  \"offset\": {\n    \"isPrimary\": true,\n    \"companyId\": 0\n  }\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "results": {
+			"value": "body.results[0]"
+		  }
+		},
+		"insertedAt": "2025-04-17T15:10:29.151497Z",
+		"lockVersion": 3,
+		"documentationLink": "",
+		"updatedAt": "2025-04-17T15:17:14.815431Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "7130545d-00de-4c95-a946-fccfc6e5ab96",
+		"name": "GET lifecycle stages for contacts",
+		"config": {
+		  "path": "crm/v3/properties/contacts/lifecyclestage",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "stages": {
+			"children": {
+			  "label": "current.label",
+			  "value": "current.value"
+			},
+			"value": "body.options"
+		  }
+		},
+		"insertedAt": "2025-04-08T16:12:16.243497Z",
+		"lockVersion": 4,
+		"documentationLink": "",
+		"updatedAt": "2025-04-18T15:03:26.359454Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "67d0c5c2-409e-47ff-8991-05c195717f2a",
+		"name": "GET properties of itemtype",
+		"config": {
+		  "path": "crm/v3/properties/{{itemType}}",
+		  "params": {},
+		  "body": {
+			"form": {},
+			"bodyType": "www_form_urlencoded"
+		  },
+		  "headers": {},
+		  "configType": "http",
+		  "method": "GET",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "results": {
+			"children": {
+			  "description": "current.description",
+			  "groupName": "current.groupName",
+			  "label": "current.label",
+			  "name": "current.name"
+			},
+			"value": "body.results"
+		  }
+		},
+		"insertedAt": "2025-04-18T15:10:31.680492Z",
+		"lockVersion": 3,
+		"documentationLink": "",
+		"updatedAt": "2025-04-23T14:55:51.212180Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "341f52eb-2725-4842-b161-bce025df17eb",
+		"name": "PATCH Lead property value",
+		"config": {
+		  "path": "crm/v3/objects/leads/{{leadsId}}",
+		  "params": {},
+		  "body": {
+			"raw": "{\n  \"properties\": {\n    \"{{propertyid}}\": \"{{propertyvalue}}\"\n  }\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "PATCH",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-04-16T17:48:48.363549Z",
+		"lockVersion": 5,
+		"documentationLink": "",
+		"updatedAt": "2025-04-28T19:25:51.983147Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "70cb7a8a-e988-4f46-b90d-6d2cfac40ec3",
+		"name": "POST Create Deal with association to object",
+		"config": {
+		  "path": "crm/v3/objects/deals",
+		  "params": {},
+		  "body": {
+			"raw": "{\n  \"properties\": {\n    \"amount\": \"{{dealAmount}}\",\n    \"closedate\": \"{{closeDate}}\",\n    \"dealname\": \"{{dealName}}\",\n    \"pipeline\": \"{{pipeline}}\",\n    \"dealstage\": \"{{dealStage}}\",\n    \"hubspot_owner_id\": \"{{ownerID}}\"\n  },\n  \"associations\": [\n    {\n      \"to\": {\n        \"id\": \"{{associateToID}}\"\n      },\n      \"types\": [\n        {\n          \"associationCategory\": \"HUBSPOT_DEFINED\",\n          \"associationTypeId\": \"{{associationTypeID}}\"\n        }\n      ]\n    }\n  ]\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "DealID": {
+			"value": "body.properties['hs_object_id']"
+		  },
+		  "properties": {
+			"value": "body.properties"
+		  }
+		},
+		"insertedAt": "2025-04-16T18:01:21.280544Z",
+		"lockVersion": 6,
+		"documentationLink": "",
+		"updatedAt": "2025-04-29T14:55:00.978157Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "93dc70d5-a950-4322-bf2f-db49d54774c8",
+		"name": "POST Get Contact by Email",
+		"config": {
+		  "path": "crm/v3/objects/contacts/search",
+		  "params": {},
+		  "body": {
+			"raw": "{\n    \"filterGroups\": [\n      {\n        \"filters\": [\n          {\n            \"propertyName\": \"email\",\n            \"operator\": \"CONTAINS_TOKEN\",\n            \"value\": \"{{email}}\"\n          }\n        ]\n      }\n    ]\n  }",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"content-type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "POST",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {
+		  "user": {
+			"children": {
+			  "FullName": "current.properties.firstname + \" \" + current.properties.lastname",
+			  "email": "current.properties.email",
+			  "id": "current.id"
+			},
+			"value": "body.results[0]"
+		  }
+		},
+		"insertedAt": "2025-03-25T16:27:07.440265Z",
+		"lockVersion": 7,
+		"documentationLink": "",
+		"updatedAt": "2025-05-16T15:08:40.901492Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  },
+	  {
+		"id": "a4d01dad-8a26-408f-93df-79b980787c13",
+		"name": "PATCH Update Deal",
+		"config": {
+		  "path": "crm/v3/objects/deals/{{dealId}}",
+		  "params": {},
+		  "body": {
+			"raw": "{\n  \"properties\" : {\n    \"{{attribute}}\": \"{{attributeValue}}\"\n  }\n}",
+			"bodyType": "raw"
+		  },
+		  "headers": {
+			"Content-Type": "application/json"
+		  },
+		  "configType": "http",
+		  "method": "PATCH",
+		  "includeEmptyParams": false,
+		  "followRedirect": false,
+		  "streamResponse": false
+		},
+		"outputs": {},
+		"insertedAt": "2025-05-19T14:36:06.615713Z",
+		"lockVersion": 2,
+		"documentationLink": "",
+		"updatedAt": "2025-05-19T14:36:06.615713Z",
+		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+		"notes": ""
+	  }
+	]
+}
