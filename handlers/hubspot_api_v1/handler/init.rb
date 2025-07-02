@@ -99,4 +99,5 @@ class HubspotApiV1
   end
   # This is a ruby constant that is used by the escape method
   ESCAPE_CHARACTERS = {'&'=>'&amp;', '>'=>'&gt;', '<'=>'&lt;', '"' => '&quot;'}
+
 end

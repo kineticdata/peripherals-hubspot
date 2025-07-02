@@ -1,6 +1,6 @@
 {
   "id": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
-  "name": "Hubspot V4",
+  "name": "Hubspot V3",
   "status": {
     "events": [
       [
@@ -374,31 +374,6 @@
 		"notes": ""
 	  },
 	  {
-		"id": "26be2bb5-da81-4baf-b28d-35bb71c63618",
-		"name": "GET association between two objects",
-		"config": {
-		  "path": "/crm/v4/objects/{{fromObjectType}}/{{objectId}}/associations/{{toObjectType}}",
-		  "params": {},
-		  "body": {
-			"form": {},
-			"bodyType": "www_form_urlencoded"
-		  },
-		  "headers": {},
-		  "configType": "http",
-		  "method": "GET",
-		  "includeEmptyParams": false,
-		  "followRedirect": false,
-		  "streamResponse": false
-		},
-		"outputs": {},
-		"insertedAt": "2025-04-03T18:30:10.107483Z",
-		"lockVersion": 3,
-		"documentationLink": "",
-		"updatedAt": "2025-04-16T18:04:39.059710Z",
-		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
-		"notes": ""
-	  },
-	  {
 		"id": "a9e601be-0d41-475e-b80c-71c3e73a4fd1",
 		"name": "GET File by ID",
 		"config": {
@@ -545,56 +520,6 @@
 		"notes": ""
 	  },
 	  {
-		"id": "84349e6c-0cde-441b-90aa-19262bddf116",
-		"name": "GET Retrieve Label assocations",
-		"config": {
-		  "path": "crm/v4/associations/{{fromObjectType}}/{{toObjectType}}/labels",
-		  "params": {},
-		  "body": {
-			"form": {},
-			"bodyType": "www_form_urlencoded"
-		  },
-		  "headers": {},
-		  "configType": "http",
-		  "method": "GET",
-		  "includeEmptyParams": false,
-		  "followRedirect": false,
-		  "streamResponse": false
-		},
-		"outputs": {},
-		"insertedAt": "2025-05-15T18:23:14.569938Z",
-		"lockVersion": 2,
-		"documentationLink": "",
-		"updatedAt": "2025-05-15T18:23:14.569938Z",
-		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
-		"notes": ""
-	  },
-	  {
-		"id": "bf962318-89f4-4bd2-a8c0-752e1088ac80",
-		"name": "PUT associate object to another object",
-		"config": {
-		  "path": "crm/v4/objects/{{objectType}}/{{objectId}}/associations/default/{{toObjectType}}/{{toObjectId}}",
-		  "params": {},
-		  "body": {
-			"form": {},
-			"bodyType": "www_form_urlencoded"
-		  },
-		  "headers": {},
-		  "configType": "http",
-		  "method": "PUT",
-		  "includeEmptyParams": false,
-		  "followRedirect": false,
-		  "streamResponse": false
-		},
-		"outputs": {},
-		"insertedAt": "2025-04-04T16:11:46.711625Z",
-		"lockVersion": 4,
-		"documentationLink": "",
-		"updatedAt": "2025-04-04T16:21:42.293330Z",
-		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
-		"notes": ""
-	  },
-	  {
 		"id": "24a8d58a-28ff-49ef-a341-6f71553c5b50",
 		"name": "GET all property options of an object",
 		"config": {
@@ -652,34 +577,6 @@
 		"lockVersion": 5,
 		"documentationLink": "",
 		"updatedAt": "2025-04-16T18:06:15.174122Z",
-		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
-		"notes": ""
-	  },
-	  {
-		"id": "6fc95246-eb45-438d-a019-7d3c2a642a87",
-		"name": "PUT associate object to another with label",
-		"config": {
-		  "path": "crm/v4/objects/{{objectType}}/{{objectId}}/associations/{{toObjectType}}/{{toObjectId}}",
-		  "params": {},
-		  "body": {
-			"raw": "[\n  {\n    \"associationCategory\": \"{{associationCategory}}\",\n    \"associationTypeId\": {{associationTypeId}}\n  }\n]",
-			"bodyType": "raw"
-		  },
-		  "headers": {
-			"Content-Type": "application/json",
-			"accept": "application/json"
-		  },
-		  "configType": "http",
-		  "method": "PUT",
-		  "includeEmptyParams": false,
-		  "followRedirect": false,
-		  "streamResponse": false
-		},
-		"outputs": {},
-		"insertedAt": "2025-05-15T18:22:48.497423Z",
-		"lockVersion": 5,
-		"documentationLink": "",
-		"updatedAt": "2025-05-16T18:37:17.438320Z",
 		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
 		"notes": ""
 	  },
@@ -879,37 +776,6 @@
 		"lockVersion": 6,
 		"documentationLink": "",
 		"updatedAt": "2025-04-16T18:06:20.167030Z",
-		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
-		"notes": ""
-	  },
-	  {
-		"id": "859539b0-487c-4564-b38f-bdb449ac7476",
-		"name": "POST Search company by Domain",
-		"config": {
-		  "path": "companies/v2/domains/{{domain}}/companies",
-		  "params": {},
-		  "body": {
-			"raw": "{\n  \"limit\": 1,\n  \"requestOptions\": {\n    \"properties\": [\n      \"domain\",\n      \"createdate\",\n      \"name\",\n      \"hs_lastmodifieddate\"\n    ]\n  },\n  \"offset\": {\n    \"isPrimary\": true,\n    \"companyId\": 0\n  }\n}",
-			"bodyType": "raw"
-		  },
-		  "headers": {
-			"content-type": "application/json"
-		  },
-		  "configType": "http",
-		  "method": "POST",
-		  "includeEmptyParams": false,
-		  "followRedirect": false,
-		  "streamResponse": false
-		},
-		"outputs": {
-		  "results": {
-			"value": "body.results[0]"
-		  }
-		},
-		"insertedAt": "2025-04-17T15:10:29.151497Z",
-		"lockVersion": 3,
-		"documentationLink": "",
-		"updatedAt": "2025-04-17T15:17:14.815431Z",
 		"connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
 		"notes": ""
 	  },
