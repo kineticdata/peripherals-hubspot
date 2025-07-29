@@ -1,4 +1,36 @@
-    {
+{
+  "id": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
+  "name": "Hubspot V4",
+  "status": {
+    "events": [
+      [
+        "Started",
+        "2025-05-15T14:42:48.666Z"
+      ]
+    ],
+    "healthy": true
+  },
+  "type": "http",
+  "config": {
+    "auth": {
+      "header": "Authorization",
+      "prefix": "Bearer",
+      "token": null,
+      "authType": "raw_bearer_token"
+    },
+    "configType": "http",
+    "caCert": null,
+    "baseUrl": "https://api.hubapi.com/",
+    "testPath": ""
+  },
+  "description": "Hubspot",
+  "secrets": {},
+  "insertedAt": "2025-03-04T17:14:45.892455Z",
+  "lockVersion": 3,
+  "documentationLink": "https://developers.hubspot.com/docs/reference/api/overview",
+  "updatedAt": "2025-04-01T15:34:20.526857Z",
+  "operations": [
+{
     "id": "e9ef1ae4-78e5-4d21-9ab0-e6692bf35e64",
     "name": "PATCH Update Columns for HubDB table",
     "config": {
@@ -937,4 +969,6 @@
     "updatedAt": "2025-05-19T14:36:06.615713Z",
     "connectionId": "0de65c4d-e00b-4205-bc66-0f31e7b87626",
     "notes": ""
-    }
+  }
+]
+}
